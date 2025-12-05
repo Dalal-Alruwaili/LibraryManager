@@ -58,4 +58,25 @@ public class Library {
             System.out.println(i + ". " + books.get(i));
         }
     }
+    public void searchBook(String keyword) {
+        if (books.isEmpty()) {
+            System.out.println("No books available.");
+            return;
+        }
+
+        boolean found = false;
+        System.out.println("\n---- Search Results ----");
+        for (Book book : books) {
+            if (book.getTitle().toLowerCase().contains(keyword.toLowerCase()) ||
+                    book.getAuthor().toLowerCase().contains(keyword.toLowerCase()) ||
+                    book.getISBN().toLowerCase().contains(keyword.toLowerCase())) {
+                System.out.println(book);
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println("No books found matching: " + keyword);
+        }
+    }
 }
