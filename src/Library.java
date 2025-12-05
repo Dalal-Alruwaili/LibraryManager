@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-
+import java.util.Scanner;
 public class Library {
     private ArrayList<Book> books = new ArrayList<>();
 
@@ -8,21 +8,53 @@ public class Library {
         System.out.println("Book added successfully.");
     }
 
-    public void deleteBookByISBN(String isbn) {
-        boolean found = false;
-        
-        for (int i = 0; i < books.size(); i++) {
-            if (books.get(i).getISBN().equals(isbn)) {
-                System.out.println("\nDeleting: " + books.get(i));
-                books.remove(i);
-                System.out.println("Book deleted successfully.");
-                found = true;
-                break;
-            }
+    public void deleteBookByIndexOrISBN() {
+        if (books.isEmpty()) {
+            System.out.println("No books available to delete.");
+            return;
         }
 
-        if (!found) {
-            System.out.println("Error: Book with ISBN " + isbn + " not found.");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Delete by: 1) Index  2) ISBN");
+        System.out.print("Choose an option: ");
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+
+        switch (choice) {
+            case 1:
+                showBooksWithIndex();
+                System.out.print("Enter index of the book to delete: ");
+                int index = scanner.nextInt();
+                scanner.nextLine();
+                if (index >= 0 && index < books.size()) {
+                    System.out.println("\nDeleting: " + books.get(index));
+                    books.remove(index);
+                    System.out.println("Book deleted successfully.");
+                } else {
+                    System.out.println("Invalid index. No book deleted.");
+                }
+                break;
+
+            case 2:
+                System.out.print("Enter ISBN of the book to delete: ");
+                String isbn = scanner.nextLine();
+                boolean found = false;
+                for (int i = 0; i < books.size(); i++) {
+                    if (books.get(i).getISBN().equalsIgnoreCase(isbn)) {
+                        System.out.println("\nDeleting: " + books.get(i));
+                        books.remove(i);
+                        System.out.println("Book deleted successfully.");
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) {
+                    System.out.println("No book found with ISBN: " + isbn);
+                }
+                break;
+
+            default:
+                System.out.println("Invalid choice. No book deleted.");
         }
     }
 
@@ -43,6 +75,7 @@ public class Library {
             System.out.println("No books available.");
             return;
         }
+
         System.out.println("\n---- Books List ----");
         for (int i = 0; i < books.size(); i++) {
             System.out.println(i + ": " + books.get(i));
@@ -54,17 +87,18 @@ public class Library {
             System.out.println("No books available.");
             return;
         }
+
         System.out.println("\n---- Library Books ----");
         for (int i = 0; i < books.size(); i++) {
             System.out.println(i + ". " + books.get(i));
         }
     }
-
     public void searchBook(String keyword) {
         if (books.isEmpty()) {
             System.out.println("No books available.");
             return;
         }
+
         boolean found = false;
         System.out.println("\n---- Search Results ----");
         for (Book book : books) {
@@ -75,6 +109,7 @@ public class Library {
                 found = true;
             }
         }
+
         if (!found) {
             System.out.println("No books found matching: " + keyword);
         }
