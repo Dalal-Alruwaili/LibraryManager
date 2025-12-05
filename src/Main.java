@@ -10,7 +10,7 @@ public class Main {
             System.out.println("1. Add Book");
             System.out.println("2. Show Books");
             System.out.println("3. Edit Book");
-            System.out.println("4. Delete Book (by ISBN)");
+            System.out.println("4. Delete Book");
             System.out.println("5. Search Book");
             System.out.println("6. Exit");
             System.out.print("Choose an option: ");
@@ -38,21 +38,19 @@ public class Main {
                     System.out.print("Enter index of the book to edit: ");
                     int editIndex = scanner.nextInt();
                     scanner.nextLine();
+
                     System.out.print("Enter New Title: ");
                     String newTitle = scanner.nextLine();
                     System.out.print("Enter New Author: ");
                     String newAuthor = scanner.nextLine();
                     System.out.print("Enter New ISBN: ");
                     String newIsbn = scanner.nextLine();
+
                     library.editBook(editIndex, newTitle, newAuthor, newIsbn);
                     break;
-
                 case 4:
-                    System.out.print("Enter ISBN of the book to delete: ");
-                    String delIsbn = scanner.nextLine();
-                    library.deleteBookByISBN(delIsbn);
+                    library.deleteBookByIndexOrISBN();
                     break;
-
                 case 5:
                     System.out.print("Enter keyword to search: ");
                     String keyword = scanner.nextLine();
