@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+
 public class Library {
     private ArrayList<Book> books = new ArrayList<>();
 
@@ -6,6 +7,7 @@ public class Library {
         books.add(new Book(title, author, isbn));
         System.out.println("Book added successfully.");
     }
+
     public void deleteBook(int index) {
         if (books.isEmpty()) {
             System.out.println("No books available to delete.");
@@ -21,6 +23,18 @@ public class Library {
         }
     }
 
+    public void editBook(int index, String newTitle, String newAuthor, String newIsbn) {
+        if (index >= 0 && index < books.size()) {
+            Book book = books.get(index);
+            book.setTitle(newTitle);
+            book.setAuthor(newAuthor);
+            book.setISBN(newIsbn);
+            System.out.println("Book updated successfully.");
+        } else {
+            System.out.println("Invalid index. Book not updated.");
+        }
+    }
+
     public void showBooksWithIndex() {
         if (books.isEmpty()) {
             System.out.println("No books available.");
@@ -32,6 +46,7 @@ public class Library {
             System.out.println(i + ": " + books.get(i));
         }
     }
+
     public void showBooks() {
         if (books.isEmpty()) {
             System.out.println("No books available.");

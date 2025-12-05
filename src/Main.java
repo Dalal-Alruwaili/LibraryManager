@@ -1,5 +1,3 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 import java.util.Scanner;
 
 public class Main {
@@ -11,9 +9,11 @@ public class Main {
             System.out.println("\n===== Library Manager =====");
             System.out.println("1. Add Book");
             System.out.println("2. Show Books");
-            System.out.println("3. Delete Book");
-            System.out.println("4. Exit");
+            System.out.println("3. Edit Book");
+            System.out.println("4. Delete Book");
+            System.out.println("5. Exit");
             System.out.print("Choose an option: ");
+            
             int choice = scanner.nextInt();
             scanner.nextLine();
 
@@ -21,27 +21,42 @@ public class Main {
                 case 1:
                     System.out.print("Enter Title: ");
                     String title = scanner.nextLine();
-
                     System.out.print("Enter Author: ");
                     String author = scanner.nextLine();
-
                     System.out.print("Enter ISBN: ");
                     String isbn = scanner.nextLine();
-
                     library.addBook(title, author, isbn);
                     break;
 
                 case 2:
                     library.showBooks();
                     break;
+
                 case 3:
                     library.showBooksWithIndex();
-                    System.out.print("Enter index of the book to delete: ");
-                    int index = scanner.nextInt();
+                    System.out.print("Enter index of the book to edit: ");
+                    int editIndex = scanner.nextInt();
                     scanner.nextLine();
-                    library.deleteBook(index);
+                    
+                    System.out.print("Enter New Title: ");
+                    String newTitle = scanner.nextLine();
+                    System.out.print("Enter New Author: ");
+                    String newAuthor = scanner.nextLine();
+                    System.out.print("Enter New ISBN: ");
+                    String newIsbn = scanner.nextLine();
+                    
+                    library.editBook(editIndex, newTitle, newAuthor, newIsbn);
                     break;
+
                 case 4:
+                    library.showBooksWithIndex();
+                    System.out.print("Enter index of the book to delete: ");
+                    int delIndex = scanner.nextInt();
+                    scanner.nextLine();
+                    library.deleteBook(delIndex);
+                    break;
+
+                case 5:
                     System.out.println("Exiting program...");
                     return;
 
