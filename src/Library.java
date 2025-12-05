@@ -4,6 +4,10 @@ public class Library {
     private ArrayList<Book> books = new ArrayList<>();
 
     public void addBook(String title, String author, String isbn) {
+        if (title.isBlank() || author.isBlank() || isbn.isBlank()) {
+            System.out.println("Error: Title, Author, and ISBN cannot be empty. Book not added.");
+            return;
+        }
         books.add(new Book(title, author, isbn));
         System.out.println("Book added successfully.");
     }
