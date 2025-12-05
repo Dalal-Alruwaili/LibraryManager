@@ -13,6 +13,10 @@ public class Book {
     public String getAuthor() { return author; }
     public String getISBN() { return isbn; }
 
+    public void setTitle(String title) { this.title = title; }
+    public void setAuthor(String author) { this.author = author; }
+    public void setISBN(String isbn) { this.isbn = isbn; }
+
     @Override
     public String toString() {
         return "Title: " + title + " | Author: " + author + " | ISBN: " + isbn;
