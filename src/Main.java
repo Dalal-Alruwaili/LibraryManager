@@ -12,7 +12,8 @@ public class Main {
             System.out.println("3. Edit Book");
             System.out.println("4. Delete Book");
             System.out.println("5. Search Book");
-            System.out.println("6. Exit");
+            System.out.println("6. Sort Books");
+            System.out.println("7. Exit");
             System.out.print("Choose an option: ");
 
             int choice = scanner.nextInt();
@@ -57,6 +58,9 @@ public class Main {
                     library.searchBook(keyword);
                     break;
                 case 6:
+                    library.sortBooks();
+                    break;
+                case 7:
                     System.out.println("Exiting program...");
                     return;
 
