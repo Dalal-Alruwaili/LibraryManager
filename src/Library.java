@@ -8,18 +8,21 @@ public class Library {
         System.out.println("Book added successfully.");
     }
 
-    public void deleteBook(int index) {
-        if (books.isEmpty()) {
-            System.out.println("No books available to delete.");
-            return;
+    public void deleteBookByISBN(String isbn) {
+        boolean found = false;
+        
+        for (int i = 0; i < books.size(); i++) {
+            if (books.get(i).getISBN().equals(isbn)) {
+                System.out.println("\nDeleting: " + books.get(i));
+                books.remove(i);
+                System.out.println("Book deleted successfully.");
+                found = true;
+                break;
+            }
         }
 
-        if (index >= 0 && index < books.size()) {
-            System.out.println("\nDeleting: " + books.get(index));
-            books.remove(index);
-            System.out.println("Book deleted successfully.");
-        } else {
-            System.out.println("Invalid index. No book deleted.");
+        if (!found) {
+            System.out.println("Error: Book with ISBN " + isbn + " not found.");
         }
     }
 
@@ -40,7 +43,6 @@ public class Library {
             System.out.println("No books available.");
             return;
         }
-
         System.out.println("\n---- Books List ----");
         for (int i = 0; i < books.size(); i++) {
             System.out.println(i + ": " + books.get(i));
@@ -52,18 +54,17 @@ public class Library {
             System.out.println("No books available.");
             return;
         }
-
         System.out.println("\n---- Library Books ----");
         for (int i = 0; i < books.size(); i++) {
             System.out.println(i + ". " + books.get(i));
         }
     }
+
     public void searchBook(String keyword) {
         if (books.isEmpty()) {
             System.out.println("No books available.");
             return;
         }
-
         boolean found = false;
         System.out.println("\n---- Search Results ----");
         for (Book book : books) {
@@ -74,7 +75,6 @@ public class Library {
                 found = true;
             }
         }
-
         if (!found) {
             System.out.println("No books found matching: " + keyword);
         }
